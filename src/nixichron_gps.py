@@ -242,6 +242,9 @@ def main() -> None:
     signal.signal(signal.SIGINT, _handle_signal)
 
     port = None
+    _BACKOFF_BASE = 1.0
+    _BACKOFF_MAX = 30.0
+    _delay = _BACKOFF_BASE
     try:
         while not _shutdown:
             sleep_until_next_second()
@@ -253,8 +256,31 @@ def main() -> None:
                 sys.stdout.buffer.write(sentence)  # preserves exact \r\n bytes
                 sys.stdout.buffer.flush()
             else:
-                # Phase 5 will open serial port and write here (LOG-02 covers serial errors)
-                pass
+                # SER-01/02/03/04: serial write with exponential backoff reconnect
+                if port is None:
+                    while port is None and not _shutdown:
+                        try:
+                            port = open_serial(args.port)
+                            logger.info('Serial port %s opened.', args.port)
+                            _delay = _BACKOFF_BASE  # reset on success
+                        except serial.SerialException as e:
+                            logger.error('Cannot open %s: %s', args.port, e)
+                            logger.warning('Retrying in %.0fs...', _delay)
+                            time.sleep(_delay)
+                            _delay = min(_delay * 2, _BACKOFF_MAX)
+                if port is not None:
+                    try:
+                        port.write(sentence)
+                    except serial.SerialException as e:
+                        logger.error('Write error on %s: %s', args.port, e)
+                        logger.warning('Port lost — reconnecting...')
+                        _delay = _BACKOFF_BASE  # reset backoff for reconnect
+                        time.sleep(_delay)       # brief pause before reconnect
+                        try:
+                            port.close()
+                        except Exception:
+                            pass
+                        port = None  # triggers re-open on next iteration
     finally:
         if port is not None:
             port.close()
