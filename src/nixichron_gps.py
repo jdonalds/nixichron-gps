@@ -11,6 +11,7 @@ Phases 2-5 add CLI, timing loop, signal handling, and serial I/O below this bloc
 
 import argparse
 import logging
+import math
 import os
 import sys
 import time
@@ -129,7 +130,24 @@ def setup_logging(verbose: bool) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Layer 5: Argument parser (CLI-01, CLI-02, CLI-03, CLI-04)
+# Layer 5: Deadline-based timing (TIME-02, TIME-03)
+# ---------------------------------------------------------------------------
+
+def sleep_until_next_second() -> None:
+    """Sleep until the start of the next UTC second boundary.
+
+    Deadline-based: computes next integer second from wall clock, sleeps the
+    fractional remainder. Self-correcting per iteration — no drift accumulation.
+    The max(0.0, ...) guard prevents ValueError if called at an exact second
+    boundary where floating-point arithmetic produces a tiny negative value.
+    """
+    now = time.time()
+    next_tick = math.ceil(now)
+    time.sleep(max(0.0, next_tick - now))
+
+
+# ---------------------------------------------------------------------------
+# Layer 6: Argument parser (CLI-01, CLI-02, CLI-03, CLI-04)
 # ---------------------------------------------------------------------------
 
 def parse_args(args=None) -> argparse.Namespace:
@@ -166,7 +184,7 @@ def parse_args(args=None) -> argparse.Namespace:
 
 
 # ---------------------------------------------------------------------------
-# Layer 6: Main dispatch (Phase 2 stub — Phase 3 extends timing, Phase 5 serial)
+# Layer 7: Main dispatch (Phase 3 adds deadline timing, Phase 5 adds serial)
 # ---------------------------------------------------------------------------
 
 def main() -> None:
@@ -182,6 +200,7 @@ def main() -> None:
         run_self_test()  # exits 0 or 1 — never returns here
 
     while True:
+        sleep_until_next_second()
         utc_dt = datetime.now(timezone.utc)
         sentence = build_gprmc(utc_dt)
         logger.debug(sentence.decode('ascii').strip())  # LOG-01: sentence at DEBUG
@@ -192,8 +211,6 @@ def main() -> None:
         else:
             # Phase 5 will open serial port and write here (LOG-02 covers serial errors)
             pass
-
-        time.sleep(1)  # Phase 3: deadline-based sleep replaces this
 
 
 if __name__ == '__main__':
