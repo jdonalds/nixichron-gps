@@ -61,9 +61,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Validation
 
-- [ ] **VAL-01**: `python nixichron_gps.py --self-test` passes (5 sentences, all checksums valid)
-- [ ] **VAL-02**: `python nixichron_gps.py --dry-run` for 5 seconds produces correctly formatted sentences with valid checksums and current UTC time
-- [ ] **VAL-03**: At least one checksum manually verified against known-good calculator
+- [x] **VAL-01**: `python nixichron_gps.py --self-test` passes (5 sentences, all checksums valid)
+- [x] **VAL-02**: `python nixichron_gps.py --dry-run` for 5 seconds produces correctly formatted sentences with valid checksums and current UTC time
+- [x] **VAL-03**: At least one checksum manually verified against known-good calculator
 
 ## v2 Requirements
 
@@ -133,9 +133,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DEPLOY-04 | Phase 6 | Pending |
 | DEPLOY-05 | Phase 6 | Pending |
 | DEPLOY-06 | Phase 6 | Pending |
-| VAL-01 | Phase 1 | Pending |
-| VAL-02 | Phase 1 | Pending |
-| VAL-03 | Phase 1 | Pending |
+| VAL-01 | Phase 1 | Complete |
+| VAL-02 | Phase 1 | Complete |
+| VAL-03 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 34 total

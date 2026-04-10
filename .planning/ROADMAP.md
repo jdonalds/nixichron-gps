@@ -12,7 +12,7 @@ Six phases deliver a single Python daemon that feeds a Jeff Thomas NixiChron Nix
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Core Sentence Engine** - Generate correct $GPRMC sentences with valid checksums, verified by --self-test
+- [x] **Phase 1: Core Sentence Engine** - Generate correct $GPRMC sentences with valid checksums, verified by --self-test (completed 2026-04-10)
 - [ ] **Phase 2: CLI Shell and Logging** - Wire argparse, logging, and --dry-run so sentences can be inspected without hardware
 - [ ] **Phase 3: Timing Loop** - Implement deadline-based 1 Hz loop aligned to UTC second boundary
 - [ ] **Phase 4: Signal Handling** - Register SIGTERM/SIGINT handler and guarantee clean port close on shutdown
@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 Plans:
 - [x] 01-01-PLAN.md — Implement nmea_checksum() and build_gprmc() with VAL-03 cross-check checkpoint
-- [ ] 01-02-PLAN.md — Add verify_gprmc_checksum(), run_self_test(), and --self-test entry point
+- [x] 01-02-PLAN.md — Add verify_gprmc_checksum(), run_self_test(), and --self-test entry point
 
 ### Phase 2: CLI Shell and Logging
 **Goal**: Users can run the script with `--port`, `--dry-run`, `--self-test`, and `-v` flags and see sentences printed to stdout without touching hardware
@@ -95,7 +95,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Sentence Engine | 1/2 | In Progress|  |
+| 1. Core Sentence Engine | 2/2 | Complete   | 2026-04-10 |
 | 2. CLI Shell and Logging | 0/? | Not started | - |
 | 3. Timing Loop | 0/? | Not started | - |
 | 4. Signal Handling | 0/? | Not started | - |
