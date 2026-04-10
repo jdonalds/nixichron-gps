@@ -1,0 +1,16 @@
+[Unit]
+Description=NixiChron GPS Emulator - feeds $GPRMC sentences to the Nixie clock
+After=network-online.target time-sync.target
+Requires=network-online.target time-sync.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+ExecStart=/usr/bin/python3 /path/to/src/nixichron_gps.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
