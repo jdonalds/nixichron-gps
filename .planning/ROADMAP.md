@@ -97,7 +97,9 @@ Plans:
   2. `nixichron-gps.service` is a valid systemd unit template with `Restart=on-failure`, depends on `network-online.target` and `time-sync.target`, runs as a non-root user placeholder
   3. README contains an ASCII wiring diagram showing DB9 pin 3 (TX) to mini-DIN pin 5, DB9 pin 5 (GND) to mini-DIN pin 1, with explicit "DO NOT CONNECT" warning for mini-DIN pin 2
   4. README troubleshooting covers: clock not locking (wiring/permissions/dialout group), clock counting from 00:00 (status field or UTC issue), macOS `cu.*` vs `tty.*` device naming
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 06-01-PLAN.md — Write requirements.txt, nixichron-gps.service, and README.md
 
 ## Progress
 
@@ -111,4 +113,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Timing Loop | 1/1 | Complete   | 2026-04-10 |
 | 4. Signal Handling | 2/2 | Complete   | 2026-04-10 |
 | 5. Serial I/O and Reconnect | 2/2 | Complete   | 2026-04-10 |
-| 6. Deployment Artifacts | 0/? | Not started | - |
+| 6. Deployment Artifacts | 0/1 | Not started | - |
