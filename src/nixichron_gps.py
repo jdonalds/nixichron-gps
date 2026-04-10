@@ -13,6 +13,7 @@ import argparse
 import logging
 import math
 import os
+import serial
 import signal
 import sys
 import time
@@ -157,6 +158,30 @@ def sleep_until_next_second() -> None:
     now = time.time()
     next_tick = math.ceil(now)
     time.sleep(max(0.0, next_tick - now))
+
+
+# ---------------------------------------------------------------------------
+# Layer 5b: Serial port helper (SER-01)
+# ---------------------------------------------------------------------------
+
+def open_serial(port: str) -> "serial.Serial":
+    """Open serial port at 4800/8N1, no flow control.
+
+    Raises serial.SerialException if port cannot be opened.
+    write_timeout=2 prevents indefinite blocking on stall (pyserial issue #281).
+    dsrdtr/rtscts/xonxoff all False — NixiChron is TX-only, no handshaking.
+    """
+    return serial.Serial(
+        port=port,
+        baudrate=4800,
+        bytesize=serial.EIGHTBITS,
+        parity=serial.PARITY_NONE,
+        stopbits=serial.STOPBITS_ONE,
+        xonxoff=False,
+        rtscts=False,
+        dsrdtr=False,
+        write_timeout=2,
+    )
 
 
 # ---------------------------------------------------------------------------
