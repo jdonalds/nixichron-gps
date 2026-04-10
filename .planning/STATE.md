@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 05-serial-i-o-and-reconnect/05-02-PLAN.md
-last_updated: "2026-04-10T05:01:10.607Z"
+stopped_at: Completed 06-deployment-artifacts/06-01-PLAN.md
+last_updated: "2026-04-10T05:22:20.619Z"
 last_activity: 2026-04-10
 progress:
   total_phases: 6
-  completed_phases: 5
-  total_plans: 9
-  completed_plans: 9
+  completed_phases: 6
+  total_plans: 10
+  completed_plans: 10
   percent: 100
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-09)
 
 **Core value:** The NixiChron clock displays accurate UTC time from the host's NTP-synced system clock, without a real GPS module.
-**Current focus:** Phase 05 — serial-i-o-and-reconnect
+**Current focus:** Phase 06 — deployment-artifacts
 
 ## Current Position
 
-Phase: 6
-Plan: Not started
+Phase: 06 (deployment-artifacts) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-04-10
 
@@ -63,6 +63,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 04-signal-handling P02 | 8 | 1 tasks | 1 files |
 | Phase 05-serial-i-o-and-reconnect P01 | 5 | 1 tasks | 1 files |
 | Phase 05 P02 | 8 | 2 tasks | 1 files |
+| Phase 06-deployment-artifacts P01 | 2 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,9 @@ Recent decisions affecting current work:
 - [Phase 05-serial-i-o-and-reconnect]: Backoff state persists before outer while loop — re-defining inside else block reset delay on every tick
 - [Phase 05-serial-i-o-and-reconnect]: time.sleep(_BACKOFF_BASE) added after write failure so reconnect phase shows reset-to-1.0 sleep even when reconnect succeeds immediately
 - [Phase 05-serial-i-o-and-reconnect]: port = None set after delay sleep and before port.close() to prevent double-close on exception
+- [Phase 06-deployment-artifacts]: requirements.txt uses exact pin (==) — pyserial 3.5 has no transitive deps, single line is correct
+- [Phase 06-deployment-artifacts]: Systemd unit depends on time-sync.target to prevent clock displaying wrong time before NTP sync on boot
+- [Phase 06-deployment-artifacts]: README troubleshooting covers all four silent failure modes: clock not locking, 00:00 display, macOS tty hang, missing cu device
 
 ### Pending Todos
 
@@ -109,6 +113,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T04:57:17.838Z
-Stopped at: Completed 05-serial-i-o-and-reconnect/05-02-PLAN.md
+Last session: 2026-04-10T05:22:20.616Z
+Stopped at: Completed 06-deployment-artifacts/06-01-PLAN.md
 Resume file: None

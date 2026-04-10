@@ -52,12 +52,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Deployment Artifacts
 
-- [ ] **DEPLOY-01**: `requirements.txt` containing `pyserial==3.5`
-- [ ] **DEPLOY-02**: `nixichron-gps.service` systemd unit file template with placeholders for user and script path
-- [ ] **DEPLOY-03**: Systemd unit: `Restart=on-failure`, depends on `network-online.target` and `time-sync.target`, runs as non-root user
-- [ ] **DEPLOY-04**: `README.md` with ASCII wiring diagram (DB9 pin 3 TX → mini-DIN pin 5 RX, DB9 pin 5 GND → mini-DIN pin 1 GND, mini-DIN pin 2 DO NOT CONNECT, mini-DIN pin 4 leave floating)
-- [ ] **DEPLOY-05**: README install steps: `pip install -r requirements.txt`, copy systemd unit, `systemctl enable --now`
-- [ ] **DEPLOY-06**: README troubleshooting: clock not locking (check TX/GND wiring, check permissions, add user to dialout group), clock counting from 00:00 (status field not A, or non-UTC time), verify NMEA with `cat` loopback, macOS `cu.*` vs `tty.*` device naming
+- [x] **DEPLOY-01**: `requirements.txt` containing `pyserial==3.5`
+- [x] **DEPLOY-02**: `nixichron-gps.service` systemd unit file template with placeholders for user and script path
+- [x] **DEPLOY-03**: Systemd unit: `Restart=on-failure`, depends on `network-online.target` and `time-sync.target`, runs as non-root user
+- [x] **DEPLOY-04**: `README.md` with ASCII wiring diagram (DB9 pin 3 TX → mini-DIN pin 5 RX, DB9 pin 5 GND → mini-DIN pin 1 GND, mini-DIN pin 2 DO NOT CONNECT, mini-DIN pin 4 leave floating)
+- [x] **DEPLOY-05**: README install steps: `pip install -r requirements.txt`, copy systemd unit, `systemctl enable --now`
+- [x] **DEPLOY-06**: README troubleshooting: clock not locking (check TX/GND wiring, check permissions, add user to dialout group), clock counting from 00:00 (status field not A, or non-UTC time), verify NMEA with `cat` loopback, macOS `cu.*` vs `tty.*` device naming
 
 ### Validation
 
@@ -127,12 +127,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LOG-01 | Phase 2 | Complete |
 | LOG-02 | Phase 2 | Pending |
 | LOG-03 | Phase 2 | Complete |
-| DEPLOY-01 | Phase 6 | Pending |
-| DEPLOY-02 | Phase 6 | Pending |
-| DEPLOY-03 | Phase 6 | Pending |
-| DEPLOY-04 | Phase 6 | Pending |
-| DEPLOY-05 | Phase 6 | Pending |
-| DEPLOY-06 | Phase 6 | Pending |
+| DEPLOY-01 | Phase 6 | Complete |
+| DEPLOY-02 | Phase 6 | Complete |
+| DEPLOY-03 | Phase 6 | Complete |
+| DEPLOY-04 | Phase 6 | Complete |
+| DEPLOY-05 | Phase 6 | Complete |
+| DEPLOY-06 | Phase 6 | Complete |
 | VAL-01 | Phase 1 | Complete |
 | VAL-02 | Phase 1 | Complete |
 | VAL-03 | Phase 1 | Complete |

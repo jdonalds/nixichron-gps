@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Timing Loop** - Implement deadline-based 1 Hz loop aligned to UTC second boundary (completed 2026-04-10)
 - [x] **Phase 4: Signal Handling** - Register SIGTERM/SIGINT handler and guarantee clean port close on shutdown (completed 2026-04-10)
 - [x] **Phase 5: Serial I/O and Reconnect** - Open serial port at 4800/8N1 and add exponential backoff reconnect (completed 2026-04-10)
-- [ ] **Phase 6: Deployment Artifacts** - Ship requirements.txt, systemd unit template, and README with wiring diagram
+- [x] **Phase 6: Deployment Artifacts** - Ship requirements.txt, systemd unit template, and README with wiring diagram (completed 2026-04-10)
 
 ## Phase Details
 
@@ -99,7 +99,7 @@ Plans:
   4. README troubleshooting covers: clock not locking (wiring/permissions/dialout group), clock counting from 00:00 (status field or UTC issue), macOS `cu.*` vs `tty.*` device naming
 **Plans**: 1 plan
 Plans:
-- [ ] 06-01-PLAN.md — Write requirements.txt, nixichron-gps.service, and README.md
+- [x] 06-01-PLAN.md — Write requirements.txt, nixichron-gps.service, and README.md
 
 ## Progress
 
@@ -113,4 +113,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Timing Loop | 1/1 | Complete   | 2026-04-10 |
 | 4. Signal Handling | 2/2 | Complete   | 2026-04-10 |
 | 5. Serial I/O and Reconnect | 2/2 | Complete   | 2026-04-10 |
-| 6. Deployment Artifacts | 0/1 | Not started | - |
+| 6. Deployment Artifacts | 1/1 | Complete   | 2026-04-10 |
