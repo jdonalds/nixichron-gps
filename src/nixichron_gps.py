@@ -9,8 +9,14 @@ Phases 1-4 build on top of this file. Phase 1 adds:
 Phases 2-5 add CLI, timing loop, signal handling, and serial I/O below this block.
 """
 
+import argparse
+import logging
+import os
 import sys
+import time
 from datetime import datetime, timezone, timedelta
+
+logger = logging.getLogger('nixichron')
 
 
 # ---------------------------------------------------------------------------
