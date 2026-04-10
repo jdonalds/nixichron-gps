@@ -2,7 +2,7 @@
 phase: 2
 slug: cli-shell-and-logging
 status: draft
-nyquist_compliant: false
+nyquist_compliant: true
 wave_0_complete: false
 created: 2026-04-10
 ---
@@ -21,7 +21,7 @@ created: 2026-04-10
 | **Config file** | tests/ directory |
 | **Quick run command** | `python3 src/nixichron_gps.py --self-test && python3 src/nixichron_gps.py --dry-run 2>/dev/null \| head -3` |
 | **Full suite command** | `python3 -m pytest tests/ -q --tb=short` |
-| **Estimated runtime** | ~3 seconds |
+| **Estimated runtime** | ~15 seconds (5 subprocess tests × 3s timeout each; normal) |
 
 ---
 
