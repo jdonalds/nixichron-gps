@@ -45,7 +45,10 @@ Plans:
   2. `python nixichron_gps.py --port /dev/cu.usbserial-X` stores the port name for later serial use (no error if port absent in dry-run)
   3. Running with `-v` shows DEBUG-level sentence output; without it, only INFO and above appear
   4. All output uses Python `logging` module — no bare `print()` statements in non-dry-run paths
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — Write tests/test_cli.py test scaffold (RED): 12 tests for parse_args(), dry-run, and -v logging
+- [ ] 02-02-PLAN.md — Add parse_args(), setup_logging(), main() to nixichron_gps.py (GREEN): all 24 tests pass
 
 ### Phase 3: Timing Loop
 **Goal**: Sentences are emitted at exactly 1 Hz, with the `$` character (the clock's 1 PPS trigger) transmitted as close to the UTC second boundary as possible, without drift accumulating over time
@@ -96,7 +99,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Sentence Engine | 2/2 | Complete   | 2026-04-10 |
-| 2. CLI Shell and Logging | 0/? | Not started | - |
+| 2. CLI Shell and Logging | 0/2 | Not started | - |
 | 3. Timing Loop | 0/? | Not started | - |
 | 4. Signal Handling | 0/? | Not started | - |
 | 5. Serial I/O and Reconnect | 0/? | Not started | - |
