@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Dummy position, speed, course, and mode fields are present so field offsets are never wrong
 **Plans**: 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — Implement nmea_checksum() and build_gprmc() with VAL-03 cross-check checkpoint
+- [x] 01-01-PLAN.md — Implement nmea_checksum() and build_gprmc() with VAL-03 cross-check checkpoint
 - [ ] 01-02-PLAN.md — Add verify_gprmc_checksum(), run_self_test(), and --self-test entry point
 
 ### Phase 2: CLI Shell and Logging
@@ -95,7 +95,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Sentence Engine | 0/2 | Not started | - |
+| 1. Core Sentence Engine | 1/2 | In Progress|  |
 | 2. CLI Shell and Logging | 0/? | Not started | - |
 | 3. Timing Loop | 0/? | Not started | - |
 | 4. Signal Handling | 0/? | Not started | - |

@@ -9,15 +9,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### NMEA Sentence Generation
 
-- [ ] **NMEA-01**: Script generates valid `$GPRMC` sentences with all 13 fields including NMEA 2.3 mode indicator `A`
-- [ ] **NMEA-02**: XOR checksum computed over all bytes between `$` and `*` (exclusive), formatted as two uppercase hex digits
-- [ ] **NMEA-03**: UTC time field formatted as `hhmmss.00` from `datetime.now(timezone.utc)`
-- [ ] **NMEA-04**: UTC date field formatted as `ddmmyy` from same UTC source
-- [ ] **NMEA-05**: Status field is always `A` (Active) — never `V`
-- [ ] **NMEA-06**: Dummy position fields present: `0000.0000,N,00000.0000,E`
-- [ ] **NMEA-07**: Speed `0.0`, course `0.0`, empty magnetic variation fields
-- [ ] **NMEA-08**: Sentence terminated with `<CR><LF>` (`\r\n`)
-- [ ] **NMEA-09**: Only `$GPRMC` sentences emitted — no other sentence types (GGA/GSA/GSV/VTG will overflow the PIC buffer and break the clock)
+- [x] **NMEA-01**: Script generates valid `$GPRMC` sentences with all 13 fields including NMEA 2.3 mode indicator `A`
+- [x] **NMEA-02**: XOR checksum computed over all bytes between `$` and `*` (exclusive), formatted as two uppercase hex digits
+- [x] **NMEA-03**: UTC time field formatted as `hhmmss.00` from `datetime.now(timezone.utc)`
+- [x] **NMEA-04**: UTC date field formatted as `ddmmyy` from same UTC source
+- [x] **NMEA-05**: Status field is always `A` (Active) — never `V`
+- [x] **NMEA-06**: Dummy position fields present: `0000.0000,N,00000.0000,E`
+- [x] **NMEA-07**: Speed `0.0`, course `0.0`, empty magnetic variation fields
+- [x] **NMEA-08**: Sentence terminated with `<CR><LF>` (`\r\n`)
+- [x] **NMEA-09**: Only `$GPRMC` sentences emitted — no other sentence types (GGA/GSA/GSV/VTG will overflow the PIC buffer and break the clock)
 
 ### Timing
 
@@ -102,15 +102,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| NMEA-01 | Phase 1 | Pending |
-| NMEA-02 | Phase 1 | Pending |
-| NMEA-03 | Phase 1 | Pending |
-| NMEA-04 | Phase 1 | Pending |
-| NMEA-05 | Phase 1 | Pending |
-| NMEA-06 | Phase 1 | Pending |
-| NMEA-07 | Phase 1 | Pending |
-| NMEA-08 | Phase 1 | Pending |
-| NMEA-09 | Phase 1 | Pending |
+| NMEA-01 | Phase 1 | Complete |
+| NMEA-02 | Phase 1 | Complete |
+| NMEA-03 | Phase 1 | Complete |
+| NMEA-04 | Phase 1 | Complete |
+| NMEA-05 | Phase 1 | Complete |
+| NMEA-06 | Phase 1 | Complete |
+| NMEA-07 | Phase 1 | Complete |
+| NMEA-08 | Phase 1 | Complete |
+| NMEA-09 | Phase 1 | Complete |
 | TIME-01 | Phase 3 | Pending |
 | TIME-02 | Phase 3 | Pending |
 | TIME-03 | Phase 3 | Pending |
