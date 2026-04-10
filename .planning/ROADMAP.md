@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Core Sentence Engine** - Generate correct $GPRMC sentences with valid checksums, verified by --self-test (completed 2026-04-10)
 - [ ] **Phase 2: CLI Shell and Logging** - Wire argparse, logging, and --dry-run so sentences can be inspected without hardware
-- [ ] **Phase 3: Timing Loop** - Implement deadline-based 1 Hz loop aligned to UTC second boundary
+- [x] **Phase 3: Timing Loop** - Implement deadline-based 1 Hz loop aligned to UTC second boundary (completed 2026-04-10)
 - [ ] **Phase 4: Signal Handling** - Register SIGTERM/SIGINT handler and guarantee clean port close on shutdown
 - [ ] **Phase 5: Serial I/O and Reconnect** - Open serial port at 4800/8N1 and add exponential backoff reconnect
 - [ ] **Phase 6: Deployment Artifacts** - Ship requirements.txt, systemd unit template, and README with wiring diagram
@@ -60,7 +60,7 @@ Plans:
   3. The loop uses deadline-based sleep (`math.ceil(time.time())`) — not naive `time.sleep(1)` — so execution overhead does not accumulate as drift
 **Plans**: 1 plan
 Plans:
-- [ ] 03-01-PLAN.md — TDD: write tests/test_timing.py (RED) then add sleep_until_next_second() and fix loop order (GREEN)
+- [x] 03-01-PLAN.md — TDD: write tests/test_timing.py (RED) then add sleep_until_next_second() and fix loop order (GREEN)
 
 ### Phase 4: Signal Handling
 **Goal**: The script shuts down cleanly on SIGTERM or SIGINT without leaving the serial port in a locked state
@@ -102,7 +102,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Core Sentence Engine | 2/2 | Complete   | 2026-04-10 |
 | 2. CLI Shell and Logging | 0/2 | Not started | - |
-| 3. Timing Loop | 0/1 | Not started | - |
+| 3. Timing Loop | 1/1 | Complete   | 2026-04-10 |
 | 4. Signal Handling | 0/? | Not started | - |
 | 5. Serial I/O and Reconnect | 0/? | Not started | - |
 | 6. Deployment Artifacts | 0/? | Not started | - |

@@ -21,9 +21,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Timing
 
-- [ ] **TIME-01**: Sentences emitted at exactly 1 Hz, aligned to the UTC second boundary
-- [ ] **TIME-02**: Deadline-based timing loop (not naive `sleep(1)`) to prevent drift accumulation
-- [ ] **TIME-03**: The `$` character (leading edge = clock's 1 PPS trigger) should be transmitted as close to the second boundary as possible
+- [x] **TIME-01**: Sentences emitted at exactly 1 Hz, aligned to the UTC second boundary
+- [x] **TIME-02**: Deadline-based timing loop (not naive `sleep(1)`) to prevent drift accumulation
+- [x] **TIME-03**: The `$` character (leading edge = clock's 1 PPS trigger) should be transmitted as close to the second boundary as possible
 
 ### Serial Communication
 
@@ -111,9 +111,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NMEA-07 | Phase 1 | Complete |
 | NMEA-08 | Phase 1 | Complete |
 | NMEA-09 | Phase 1 | Complete |
-| TIME-01 | Phase 3 | Pending |
-| TIME-02 | Phase 3 | Pending |
-| TIME-03 | Phase 3 | Pending |
+| TIME-01 | Phase 3 | Complete |
+| TIME-02 | Phase 3 | Complete |
+| TIME-03 | Phase 3 | Complete |
 | SER-01 | Phase 5 | Pending |
 | SER-02 | Phase 5 | Pending |
 | SER-03 | Phase 5 | Pending |

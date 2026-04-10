@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 02-cli-shell-and-logging/02-02-PLAN.md
-last_updated: "2026-04-10T03:43:35.562Z"
+stopped_at: Completed 03-timing-loop/03-01-PLAN.md
+last_updated: "2026-04-10T03:58:04.305Z"
 last_activity: 2026-04-10
 progress:
   total_phases: 6
-  completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
-  percent: 0
+  completed_phases: 3
+  total_plans: 5
+  completed_plans: 5
+  percent: 100
 ---
 
 # Project State
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-09)
 
 **Core value:** The NixiChron clock displays accurate UTC time from the host's NTP-synced system clock, without a real GPS module.
-**Current focus:** Phase 02 — cli-shell-and-logging
+**Current focus:** Phase 03 — timing-loop
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
+Phase: 03 (timing-loop) — EXECUTING
+Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-04-10
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-core-sentence-engine P02 | 15 | 2 tasks | 2 files |
 | Phase 02-cli-shell-and-logging P01 | 1 | 1 tasks | 1 files |
 | Phase 02-cli-shell-and-logging P02 | 8 | 2 tasks | 1 files |
+| Phase 03-timing-loop P01 | 35 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,9 @@ Recent decisions affecting current work:
 - [Phase 02-cli-shell-and-logging]: parse_args(args=None) pattern enables unit tests to inject arg lists without touching sys.argv
 - [Phase 02-cli-shell-and-logging]: setup_logging called from main() after parse_args — logging.basicConfig is one-shot, must know verbose flag first
 - [Phase 02-cli-shell-and-logging]: sys.stdout.buffer.write (binary) preserves exact CRLF bytes required by NixiChron firmware
+- [Phase 03-timing-loop]: sleep_until_next_second() uses math.ceil(time.time()) deadline approach — self-correcting per iteration, no drift accumulation
+- [Phase 03-timing-loop]: main() loop order: sleep_until_next_second() called first, datetime.now(timezone.utc) immediately after — timestamp reflects post-boundary wall time
+- [Phase 03-timing-loop]: _load_module() registers module in sys.modules['nixichron_gps'] so unittest.mock.patch can resolve patching targets by module name
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T03:40:32.947Z
-Stopped at: Completed 02-cli-shell-and-logging/02-02-PLAN.md
+Last session: 2026-04-10T03:58:04.303Z
+Stopped at: Completed 03-timing-loop/03-01-PLAN.md
 Resume file: None
