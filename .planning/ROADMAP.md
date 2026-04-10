@@ -48,7 +48,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 02-01-PLAN.md — Write tests/test_cli.py test scaffold (RED): 12 tests for parse_args(), dry-run, and -v logging
-- [ ] 02-02-PLAN.md — Add parse_args(), setup_logging(), main() to nixichron_gps.py (GREEN): all 24 tests pass
+- [x] 02-02-PLAN.md — Add parse_args(), setup_logging(), main() to nixichron_gps.py (GREEN): all 24 tests pass
 
 ### Phase 3: Timing Loop
 **Goal**: Sentences are emitted at exactly 1 Hz, with the `$` character (the clock's 1 PPS trigger) transmitted as close to the UTC second boundary as possible, without drift accumulating over time

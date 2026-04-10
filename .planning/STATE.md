@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 02-cli-shell-and-logging/02-01-PLAN.md
-last_updated: "2026-04-10T03:34:33.127Z"
+status: verifying
+stopped_at: Completed 02-cli-shell-and-logging/02-02-PLAN.md
+last_updated: "2026-04-10T03:40:32.949Z"
 last_activity: 2026-04-10
 progress:
   total_phases: 6
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-09)
 
 Phase: 02 (cli-shell-and-logging) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-10
 
 Progress: [░░░░░░░░░░] 0%
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-core-sentence-engine P01 | 2 | 2 tasks | 1 files |
 | Phase 01-core-sentence-engine P02 | 15 | 2 tasks | 2 files |
 | Phase 02-cli-shell-and-logging P01 | 1 | 1 tasks | 1 files |
+| Phase 02-cli-shell-and-logging P02 | 8 | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 01-core-sentence-engine]: run_self_test uses fixed base datetime(2026,1,15,12,0,0,utc) with 1-hour increments so all 5 sentences have distinct time digits
 - [Phase 02-cli-shell-and-logging]: importlib.util.spec_from_file_location used for module loading to avoid sys.path pollution across tests
 - [Phase 02-cli-shell-and-logging]: subprocess.Popen + communicate(timeout=3) + SIGTERM chosen for testing infinite-loop --dry-run scripts
+- [Phase 02-cli-shell-and-logging]: parse_args(args=None) pattern enables unit tests to inject arg lists without touching sys.argv
+- [Phase 02-cli-shell-and-logging]: setup_logging called from main() after parse_args — logging.basicConfig is one-shot, must know verbose flag first
+- [Phase 02-cli-shell-and-logging]: sys.stdout.buffer.write (binary) preserves exact CRLF bytes required by NixiChron firmware
 
 ### Pending Todos
 
@@ -86,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T03:34:33.124Z
-Stopped at: Completed 02-cli-shell-and-logging/02-01-PLAN.md
+Last session: 2026-04-10T03:40:32.947Z
+Stopped at: Completed 02-cli-shell-and-logging/02-02-PLAN.md
 Resume file: None
