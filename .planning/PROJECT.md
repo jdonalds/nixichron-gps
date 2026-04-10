@@ -12,7 +12,10 @@ The clock displays accurate UTC time, synchronized to the host's NTP-disciplined
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Correct $GPRMC format with UTC time, dummy position, status A, mode A — Phase 1
+- ✓ XOR checksum calculated correctly (between `$` and `*`, two uppercase hex digits) — Phase 1
+- ✓ Uses OS system clock (`datetime.now(timezone.utc)`) — no NTP library — Phase 1
+- ✓ `--self-test` flag: generate 5 sentences, validate checksums, exit — Phase 1
 
 ### Active
 
@@ -89,4 +92,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-09 after initialization*
+*Last updated: 2026-04-10 after Phase 1 completion*
