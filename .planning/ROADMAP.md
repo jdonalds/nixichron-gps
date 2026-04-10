@@ -58,7 +58,9 @@ Plans:
   1. Running `--dry-run` for 10 seconds produces exactly 10 sentences with timestamps advancing by 1 second each
   2. Sentence timestamps in dry-run output match the host's UTC second (verifiable with `date -u`)
   3. The loop uses deadline-based sleep (`math.ceil(time.time())`) — not naive `time.sleep(1)` — so execution overhead does not accumulate as drift
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 03-01-PLAN.md — TDD: write tests/test_timing.py (RED) then add sleep_until_next_second() and fix loop order (GREEN)
 
 ### Phase 4: Signal Handling
 **Goal**: The script shuts down cleanly on SIGTERM or SIGINT without leaving the serial port in a locked state
@@ -100,7 +102,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Core Sentence Engine | 2/2 | Complete   | 2026-04-10 |
 | 2. CLI Shell and Logging | 0/2 | Not started | - |
-| 3. Timing Loop | 0/? | Not started | - |
+| 3. Timing Loop | 0/1 | Not started | - |
 | 4. Signal Handling | 0/? | Not started | - |
 | 5. Serial I/O and Reconnect | 0/? | Not started | - |
 | 6. Deployment Artifacts | 0/? | Not started | - |
