@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 03-timing-loop/03-01-PLAN.md
-last_updated: "2026-04-10T04:01:48.425Z"
+status: executing
+stopped_at: Completed 04-signal-handling/04-01-PLAN.md
+last_updated: "2026-04-10T04:25:11.451Z"
 last_activity: 2026-04-10
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 5
-  completed_plans: 5
-  percent: 100
+  total_plans: 7
+  completed_plans: 6
+  percent: 86
 ---
 
 # Project State
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-09)
 
 **Core value:** The NixiChron clock displays accurate UTC time from the host's NTP-synced system clock, without a real GPS module.
-**Current focus:** Phase 03 — timing-loop
+**Current focus:** Phase 04 — signal-handling
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 04 (signal-handling) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-04-10
 
 Progress: [░░░░░░░░░░] 0%
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-cli-shell-and-logging P01 | 1 | 1 tasks | 1 files |
 | Phase 02-cli-shell-and-logging P02 | 8 | 2 tasks | 1 files |
 | Phase 03-timing-loop P01 | 35 | 2 tasks | 2 files |
+| Phase 04-signal-handling P01 | 1 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,8 @@ Recent decisions affecting current work:
 - [Phase 03-timing-loop]: sleep_until_next_second() uses math.ceil(time.time()) deadline approach — self-correcting per iteration, no drift accumulation
 - [Phase 03-timing-loop]: main() loop order: sleep_until_next_second() called first, datetime.now(timezone.utc) immediately after — timestamp reflects post-boundary wall time
 - [Phase 03-timing-loop]: _load_module() registers module in sys.modules['nixichron_gps'] so unittest.mock.patch can resolve patching targets by module name
+- [Phase 04-signal-handling]: Signal test start detection uses proc.stdout.read(64) loop with 5s deadline — avoids flaky fixed sleep
+- [Phase 04-signal-handling]: Source inspection uses SRC_PATH.read_text() not _load_module() for structural assertion tests
 
 ### Pending Todos
 
@@ -94,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T03:58:04.303Z
-Stopped at: Completed 03-timing-loop/03-01-PLAN.md
+Last session: 2026-04-10T04:25:11.449Z
+Stopped at: Completed 04-signal-handling/04-01-PLAN.md
 Resume file: None

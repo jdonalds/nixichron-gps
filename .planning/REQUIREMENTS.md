@@ -34,8 +34,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Signal Handling
 
-- [ ] **SIG-01**: SIGTERM and SIGINT caught cleanly — sets a shutdown flag, main loop exits
-- [ ] **SIG-02**: Serial port closed in `finally` block on shutdown (prevents locked USB adapter state)
+- [x] **SIG-01**: SIGTERM and SIGINT caught cleanly — sets a shutdown flag, main loop exits
+- [x] **SIG-02**: Serial port closed in `finally` block on shutdown (prevents locked USB adapter state)
 
 ### CLI Interface
 
@@ -118,8 +118,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SER-02 | Phase 5 | Pending |
 | SER-03 | Phase 5 | Pending |
 | SER-04 | Phase 5 | Pending |
-| SIG-01 | Phase 4 | Pending |
-| SIG-02 | Phase 4 | Pending |
+| SIG-01 | Phase 4 | Complete |
+| SIG-02 | Phase 4 | Complete |
 | CLI-01 | Phase 2 | Complete |
 | CLI-02 | Phase 2 | Complete |
 | CLI-03 | Phase 2 | Complete |

@@ -72,7 +72,7 @@ Plans:
   3. The serial port is closed in a `finally` block, not inside the signal handler, so the USB adapter is never left locked
 **Plans**: 2 plans
 Plans:
-- [ ] 04-01-PLAN.md — TDD (RED): write tests/test_signal.py with 4 failing tests for SIG-01 and SIG-02
+- [x] 04-01-PLAN.md — TDD (RED): write tests/test_signal.py with 4 failing tests for SIG-01 and SIG-02
 - [ ] 04-02-PLAN.md — GREEN: add _shutdown flag, _handle_signal(), signal registration, while not _shutdown, try/finally to nixichron_gps.py
 
 ### Phase 5: Serial I/O and Reconnect
@@ -106,6 +106,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Core Sentence Engine | 2/2 | Complete   | 2026-04-10 |
 | 2. CLI Shell and Logging | 0/2 | Not started | - |
 | 3. Timing Loop | 1/1 | Complete   | 2026-04-10 |
-| 4. Signal Handling | 0/2 | Not started | - |
+| 4. Signal Handling | 1/2 | In Progress|  |
 | 5. Serial I/O and Reconnect | 0/? | Not started | - |
 | 6. Deployment Artifacts | 0/? | Not started | - |
