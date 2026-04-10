@@ -31,7 +31,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Checksum is two uppercase hex digits, computed correctly over the bytes between `$` and `*` (exclusive), matching an independent calculator
   4. UTC time field is `hhmmss.00` format sourced from `datetime.now(timezone.utc)` and UTC date field is `ddmmyy` (day-first)
   5. Dummy position, speed, course, and mode fields are present so field offsets are never wrong
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Implement nmea_checksum() and build_gprmc() with VAL-03 cross-check checkpoint
+- [ ] 01-02-PLAN.md — Add verify_gprmc_checksum(), run_self_test(), and --self-test entry point
 
 ### Phase 2: CLI Shell and Logging
 **Goal**: Users can run the script with `--port`, `--dry-run`, `--self-test`, and `-v` flags and see sentences printed to stdout without touching hardware
@@ -92,7 +95,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Sentence Engine | 0/? | Not started | - |
+| 1. Core Sentence Engine | 0/2 | Not started | - |
 | 2. CLI Shell and Logging | 0/? | Not started | - |
 | 3. Timing Loop | 0/? | Not started | - |
 | 4. Signal Handling | 0/? | Not started | - |
