@@ -70,14 +70,16 @@ def test_verify_does_not_call_nmea_checksum():
     from nixichron_gps import build_gprmc, verify_gprmc_checksum
 
     original = nixichron_gps.nmea_checksum
+    # Build the sentence BEFORE patching — build_gprmc calls nmea_checksum
+    utc_dt = datetime(2026, 1, 15, 12, 0, 0, tzinfo=timezone.utc)
+    sentence_bytes = build_gprmc(utc_dt)
+
     def forbidden(*args, **kwargs):
         raise AssertionError("verify_gprmc_checksum must not call nmea_checksum (D-02)")
+
+    # Now patch nmea_checksum — verify_gprmc_checksum must NOT call it
     nixichron_gps.nmea_checksum = forbidden
     try:
-        utc_dt = datetime(2026, 1, 15, 12, 0, 0, tzinfo=timezone.utc)
-        sentence_bytes = build_gprmc(utc_dt)
-        # build_gprmc calls nmea_checksum — build first, THEN patch
-        nixichron_gps.nmea_checksum = forbidden
         result = verify_gprmc_checksum(sentence_bytes)
         assert result is True
     finally:

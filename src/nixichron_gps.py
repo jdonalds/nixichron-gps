@@ -53,3 +53,62 @@ def build_gprmc(utc_dt) -> bytes:
     checksum = nmea_checksum('$' + body + '*')
     sentence = f'${body}*{checksum}\r\n'
     return sentence.encode('ascii')
+
+
+# ---------------------------------------------------------------------------
+# Layer 3a: Independent verifier for self-test (D-02)
+# ---------------------------------------------------------------------------
+
+def verify_gprmc_checksum(sentence_bytes: bytes) -> bool:
+    """Parse a complete $GPRMC sentence and verify its checksum independently.
+
+    This is a second, distinct XOR implementation — not a call to nmea_checksum().
+    Required by D-02 to catch off-by-one bugs in the builder's checksum range.
+    """
+    try:
+        sentence = sentence_bytes.decode('ascii').strip()
+    except (UnicodeDecodeError, AttributeError):
+        return False
+    if not sentence.startswith('$') or '*' not in sentence:
+        return False
+    star_pos = sentence.index('*')
+    embedded = sentence[star_pos + 1:star_pos + 3]
+    # Independent XOR — same algorithm as nmea_checksum, separate code path
+    body = sentence[1:star_pos]
+    computed = 0
+    for char in body:
+        computed ^= ord(char)
+    expected = f'{computed:02X}'
+    return embedded == expected
+
+
+# ---------------------------------------------------------------------------
+# Layer 3b: Self-test runner (VAL-01, D-06, D-07)
+# ---------------------------------------------------------------------------
+
+def run_self_test() -> None:
+    """Generate 5 sentences, verify checksums, print PASS/FAIL, exit 0 or 1.
+
+    Uses a fixed base datetime with 1-hour increments so digits in both the
+    time and date fields vary across the 5 sentences.
+    """
+    base = datetime(2026, 1, 15, 12, 0, 0, tzinfo=timezone.utc)
+    all_pass = True
+    for i in range(5):
+        utc_dt = base + timedelta(seconds=i * 3600)
+        sentence_bytes = build_gprmc(utc_dt)
+        ok = verify_gprmc_checksum(sentence_bytes)
+        label = 'PASS' if ok else 'FAIL'
+        print(f'{sentence_bytes.decode("ascii").strip()}  {label}')
+        if not ok:
+            all_pass = False
+    sys.exit(0 if all_pass else 1)
+
+
+# ---------------------------------------------------------------------------
+# Entry point (Phase 2 adds argparse; Phase 1 only wires --self-test)
+# ---------------------------------------------------------------------------
+
+if __name__ == '__main__':
+    if '--self-test' in sys.argv:
+        run_self_test()
