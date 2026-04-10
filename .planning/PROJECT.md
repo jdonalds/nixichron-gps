@@ -18,6 +18,7 @@ The clock displays accurate UTC time, synchronized to the host's NTP-disciplined
 - ✓ `--self-test` flag: generate 5 sentences, validate checksums, exit — Phase 1
 - ✓ `--dry-run` flag: print sentences to stdout instead of serial port — Phase 2
 - ✓ Logging: DEBUG for sent sentences, ERROR for failures (logger established) — Phase 2
+- ✓ Sentences sent every second, aligned to the top-of-second boundary — Phase 3
 
 ### Active
 
@@ -94,4 +95,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-10 after Phase 2 completion*
+*Last updated: 2026-04-10 after Phase 3 completion*
