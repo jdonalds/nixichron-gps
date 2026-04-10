@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Core Sentence Engine** - Generate correct $GPRMC sentences with valid checksums, verified by --self-test (completed 2026-04-10)
 - [ ] **Phase 2: CLI Shell and Logging** - Wire argparse, logging, and --dry-run so sentences can be inspected without hardware
 - [x] **Phase 3: Timing Loop** - Implement deadline-based 1 Hz loop aligned to UTC second boundary (completed 2026-04-10)
-- [ ] **Phase 4: Signal Handling** - Register SIGTERM/SIGINT handler and guarantee clean port close on shutdown
+- [x] **Phase 4: Signal Handling** - Register SIGTERM/SIGINT handler and guarantee clean port close on shutdown (completed 2026-04-10)
 - [ ] **Phase 5: Serial I/O and Reconnect** - Open serial port at 4800/8N1 and add exponential backoff reconnect
 - [ ] **Phase 6: Deployment Artifacts** - Ship requirements.txt, systemd unit template, and README with wiring diagram
 
@@ -73,7 +73,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 04-01-PLAN.md — TDD (RED): write tests/test_signal.py with 4 failing tests for SIG-01 and SIG-02
-- [ ] 04-02-PLAN.md — GREEN: add _shutdown flag, _handle_signal(), signal registration, while not _shutdown, try/finally to nixichron_gps.py
+- [x] 04-02-PLAN.md — GREEN: add _shutdown flag, _handle_signal(), signal registration, while not _shutdown, try/finally to nixichron_gps.py
 
 ### Phase 5: Serial I/O and Reconnect
 **Goal**: The script opens the serial port at 4800 baud/8N1 and sends sentences to the NixiChron clock, recovering automatically from disconnects without crashing
@@ -106,6 +106,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Core Sentence Engine | 2/2 | Complete   | 2026-04-10 |
 | 2. CLI Shell and Logging | 0/2 | Not started | - |
 | 3. Timing Loop | 1/1 | Complete   | 2026-04-10 |
-| 4. Signal Handling | 1/2 | In Progress|  |
+| 4. Signal Handling | 2/2 | Complete   | 2026-04-10 |
 | 5. Serial I/O and Reconnect | 0/? | Not started | - |
 | 6. Deployment Artifacts | 0/? | Not started | - |
