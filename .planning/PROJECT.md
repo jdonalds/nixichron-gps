@@ -16,6 +16,8 @@ The clock displays accurate UTC time, synchronized to the host's NTP-disciplined
 - ✓ XOR checksum calculated correctly (between `$` and `*`, two uppercase hex digits) — Phase 1
 - ✓ Uses OS system clock (`datetime.now(timezone.utc)`) — no NTP library — Phase 1
 - ✓ `--self-test` flag: generate 5 sentences, validate checksums, exit — Phase 1
+- ✓ `--dry-run` flag: print sentences to stdout instead of serial port — Phase 2
+- ✓ Logging: DEBUG for sent sentences, ERROR for failures (logger established) — Phase 2
 
 ### Active
 
@@ -92,4 +94,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-10 after Phase 1 completion*
+*Last updated: 2026-04-10 after Phase 2 completion*
