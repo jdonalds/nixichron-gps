@@ -112,9 +112,89 @@ def run_self_test() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Entry point (Phase 2 adds argparse; Phase 1 only wires --self-test)
+# Layer 4: Logging setup (LOG-01, LOG-02, LOG-03)
 # ---------------------------------------------------------------------------
 
+def setup_logging(verbose: bool) -> None:
+    """Configure root logger from main() — not at module level.
+
+    basicConfig is one-shot; calling at module level bakes INFO before --verbose is parsed.
+    """
+    level = logging.DEBUG if verbose else logging.INFO
+    logging.basicConfig(
+        level=level,
+        format='%(asctime)s %(levelname)s %(message)s',
+        datefmt='%H:%M:%S',
+    )
+
+
+# ---------------------------------------------------------------------------
+# Layer 5: Argument parser (CLI-01, CLI-02, CLI-03, CLI-04)
+# ---------------------------------------------------------------------------
+
+def parse_args(args=None) -> argparse.Namespace:
+    """Parse CLI arguments. args=None uses sys.argv; pass list for unit tests.
+
+    Port: --port > GPS_PORT env > /dev/ttyUSB0 default.
+    """
+    default_port = os.environ.get('GPS_PORT', '/dev/ttyUSB0')
+    parser = argparse.ArgumentParser(
+        description='NixiChron GPS Emulator — feeds $GPRMC sentences to a Nixie tube clock',
+    )
+    parser.add_argument(
+        '--port',
+        default=default_port,
+        metavar='DEVICE',
+        help='Serial port device (default: GPS_PORT env or /dev/ttyUSB0)',
+    )
+    parser.add_argument(
+        '--dry-run',
+        action='store_true',
+        help='Print sentences to stdout; do not open serial port',
+    )
+    parser.add_argument(
+        '--self-test',
+        action='store_true',
+        help='Generate 5 sentences, verify checksums, exit 0/1',
+    )
+    parser.add_argument(
+        '--verbose', '-v',
+        action='store_true',
+        help='Set log level to DEBUG (default: INFO)',
+    )
+    return parser.parse_args(args)
+
+
+# ---------------------------------------------------------------------------
+# Layer 6: Main dispatch (Phase 2 stub — Phase 3 extends timing, Phase 5 serial)
+# ---------------------------------------------------------------------------
+
+def main() -> None:
+    """Entry point. parse_args -> setup_logging -> self_test or dry-run loop.
+
+    sys.stdout.buffer.write preserves exact \\r\\n bytes (not sys.stdout.write).
+    Phase 3 replaces time.sleep(1); Phase 5 adds serial write.
+    """
+    args = parse_args()
+    setup_logging(args.verbose)
+
+    if args.self_test:
+        run_self_test()  # exits 0 or 1 — never returns here
+
+    while True:
+        utc_dt = datetime.now(timezone.utc)
+        sentence = build_gprmc(utc_dt)
+        logger.debug(sentence.decode('ascii').strip())  # LOG-01: sentence at DEBUG
+
+        if args.dry_run:
+            sys.stdout.buffer.write(sentence)  # preserves exact \r\n bytes
+            sys.stdout.buffer.flush()
+        else:
+            # Phase 5 will open serial port and write here (LOG-02 covers serial errors)
+            pass
+
+        time.sleep(1)  # Phase 3: deadline-based sleep replaces this
+
+
 if __name__ == '__main__':
-    if '--self-test' in sys.argv:
-        run_self_test()
+    main()
