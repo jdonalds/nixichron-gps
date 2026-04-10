@@ -102,46 +102,46 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| NMEA-01 | — | Pending |
-| NMEA-02 | — | Pending |
-| NMEA-03 | — | Pending |
-| NMEA-04 | — | Pending |
-| NMEA-05 | — | Pending |
-| NMEA-06 | — | Pending |
-| NMEA-07 | — | Pending |
-| NMEA-08 | — | Pending |
-| NMEA-09 | — | Pending |
-| TIME-01 | — | Pending |
-| TIME-02 | — | Pending |
-| TIME-03 | — | Pending |
-| SER-01 | — | Pending |
-| SER-02 | — | Pending |
-| SER-03 | — | Pending |
-| SER-04 | — | Pending |
-| SIG-01 | — | Pending |
-| SIG-02 | — | Pending |
-| CLI-01 | — | Pending |
-| CLI-02 | — | Pending |
-| CLI-03 | — | Pending |
-| CLI-04 | — | Pending |
-| LOG-01 | — | Pending |
-| LOG-02 | — | Pending |
-| LOG-03 | — | Pending |
-| DEPLOY-01 | — | Pending |
-| DEPLOY-02 | — | Pending |
-| DEPLOY-03 | — | Pending |
-| DEPLOY-04 | — | Pending |
-| DEPLOY-05 | — | Pending |
-| DEPLOY-06 | — | Pending |
-| VAL-01 | — | Pending |
-| VAL-02 | — | Pending |
-| VAL-03 | — | Pending |
+| NMEA-01 | Phase 1 | Pending |
+| NMEA-02 | Phase 1 | Pending |
+| NMEA-03 | Phase 1 | Pending |
+| NMEA-04 | Phase 1 | Pending |
+| NMEA-05 | Phase 1 | Pending |
+| NMEA-06 | Phase 1 | Pending |
+| NMEA-07 | Phase 1 | Pending |
+| NMEA-08 | Phase 1 | Pending |
+| NMEA-09 | Phase 1 | Pending |
+| TIME-01 | Phase 3 | Pending |
+| TIME-02 | Phase 3 | Pending |
+| TIME-03 | Phase 3 | Pending |
+| SER-01 | Phase 5 | Pending |
+| SER-02 | Phase 5 | Pending |
+| SER-03 | Phase 5 | Pending |
+| SER-04 | Phase 5 | Pending |
+| SIG-01 | Phase 4 | Pending |
+| SIG-02 | Phase 4 | Pending |
+| CLI-01 | Phase 2 | Pending |
+| CLI-02 | Phase 2 | Pending |
+| CLI-03 | Phase 2 | Pending |
+| CLI-04 | Phase 2 | Pending |
+| LOG-01 | Phase 2 | Pending |
+| LOG-02 | Phase 2 | Pending |
+| LOG-03 | Phase 2 | Pending |
+| DEPLOY-01 | Phase 6 | Pending |
+| DEPLOY-02 | Phase 6 | Pending |
+| DEPLOY-03 | Phase 6 | Pending |
+| DEPLOY-04 | Phase 6 | Pending |
+| DEPLOY-05 | Phase 6 | Pending |
+| DEPLOY-06 | Phase 6 | Pending |
+| VAL-01 | Phase 1 | Pending |
+| VAL-02 | Phase 1 | Pending |
+| VAL-03 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 34 total
-- Mapped to phases: 0
-- Unmapped: 34 ⚠️
+- Mapped to phases: 34
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-04-09*
-*Last updated: 2026-04-09 after initial definition*
+*Last updated: 2026-04-09 after roadmap creation*
