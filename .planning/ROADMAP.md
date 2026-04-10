@@ -47,7 +47,7 @@ Plans:
   4. All output uses Python `logging` module — no bare `print()` statements in non-dry-run paths
 **Plans**: 2 plans
 Plans:
-- [ ] 02-01-PLAN.md — Write tests/test_cli.py test scaffold (RED): 12 tests for parse_args(), dry-run, and -v logging
+- [x] 02-01-PLAN.md — Write tests/test_cli.py test scaffold (RED): 12 tests for parse_args(), dry-run, and -v logging
 - [ ] 02-02-PLAN.md — Add parse_args(), setup_logging(), main() to nixichron_gps.py (GREEN): all 24 tests pass
 
 ### Phase 3: Timing Loop

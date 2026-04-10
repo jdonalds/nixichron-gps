@@ -39,16 +39,16 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### CLI Interface
 
-- [ ] **CLI-01**: `--port` argument to specify serial device
-- [ ] **CLI-02**: `--dry-run` flag prints sentences to stdout instead of serial port
-- [ ] **CLI-03**: `--self-test` flag generates 5 sentences, validates each checksum against independent implementation, exits with pass/fail
-- [ ] **CLI-04**: `--verbose` or `-v` flag sets log level to DEBUG (default: INFO)
+- [x] **CLI-01**: `--port` argument to specify serial device
+- [x] **CLI-02**: `--dry-run` flag prints sentences to stdout instead of serial port
+- [x] **CLI-03**: `--self-test` flag generates 5 sentences, validates each checksum against independent implementation, exits with pass/fail
+- [x] **CLI-04**: `--verbose` or `-v` flag sets log level to DEBUG (default: INFO)
 
 ### Logging
 
-- [ ] **LOG-01**: Each sent sentence logged at DEBUG level
+- [x] **LOG-01**: Each sent sentence logged at DEBUG level
 - [ ] **LOG-02**: Serial errors logged at ERROR level
-- [ ] **LOG-03**: Uses Python `logging` module (not print statements)
+- [x] **LOG-03**: Uses Python `logging` module (not print statements)
 
 ### Deployment Artifacts
 
@@ -120,13 +120,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SER-04 | Phase 5 | Pending |
 | SIG-01 | Phase 4 | Pending |
 | SIG-02 | Phase 4 | Pending |
-| CLI-01 | Phase 2 | Pending |
-| CLI-02 | Phase 2 | Pending |
-| CLI-03 | Phase 2 | Pending |
-| CLI-04 | Phase 2 | Pending |
-| LOG-01 | Phase 2 | Pending |
+| CLI-01 | Phase 2 | Complete |
+| CLI-02 | Phase 2 | Complete |
+| CLI-03 | Phase 2 | Complete |
+| CLI-04 | Phase 2 | Complete |
+| LOG-01 | Phase 2 | Complete |
 | LOG-02 | Phase 2 | Pending |
-| LOG-03 | Phase 2 | Pending |
+| LOG-03 | Phase 2 | Complete |
 | DEPLOY-01 | Phase 6 | Pending |
 | DEPLOY-02 | Phase 6 | Pending |
 | DEPLOY-03 | Phase 6 | Pending |

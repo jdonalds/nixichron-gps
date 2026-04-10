@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 01-core-sentence-engine/01-02-PLAN.md
-last_updated: "2026-04-10T03:15:20.703Z"
+status: executing
+stopped_at: Completed 02-cli-shell-and-logging/02-01-PLAN.md
+last_updated: "2026-04-10T03:34:33.127Z"
 last_activity: 2026-04-10
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 3
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-09)
 
 **Core value:** The NixiChron clock displays accurate UTC time from the host's NTP-synced system clock, without a real GPS module.
-**Current focus:** Phase 01 — core-sentence-engine
+**Current focus:** Phase 02 — cli-shell-and-logging
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 02 (cli-shell-and-logging) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-04-10
 
 Progress: [░░░░░░░░░░] 0%
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-core-sentence-engine P01 | 2 | 2 tasks | 1 files |
 | Phase 01-core-sentence-engine P02 | 15 | 2 tasks | 2 files |
+| Phase 02-cli-shell-and-logging P01 | 1 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01-core-sentence-engine]: Verified checksum for datetime(2026,4,9,12,34,56,utc) is 50 (0x50 = 80 decimal) — VAL-03 satisfied
 - [Phase 01-core-sentence-engine]: verify_gprmc_checksum is a fully independent XOR loop — does not call nmea_checksum() (D-02), catching off-by-one bugs
 - [Phase 01-core-sentence-engine]: run_self_test uses fixed base datetime(2026,1,15,12,0,0,utc) with 1-hour increments so all 5 sentences have distinct time digits
+- [Phase 02-cli-shell-and-logging]: importlib.util.spec_from_file_location used for module loading to avoid sys.path pollution across tests
+- [Phase 02-cli-shell-and-logging]: subprocess.Popen + communicate(timeout=3) + SIGTERM chosen for testing infinite-loop --dry-run scripts
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T03:12:07.751Z
-Stopped at: Completed 01-core-sentence-engine/01-02-PLAN.md
+Last session: 2026-04-10T03:34:33.124Z
+Stopped at: Completed 02-cli-shell-and-logging/02-01-PLAN.md
 Resume file: None
