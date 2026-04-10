@@ -13,11 +13,24 @@ import argparse
 import logging
 import math
 import os
+import signal
 import sys
 import time
 from datetime import datetime, timezone, timedelta
 
 logger = logging.getLogger('nixichron')
+
+# ---------------------------------------------------------------------------
+# Layer 0: Signal handling (SIG-01, SIG-02)
+# ---------------------------------------------------------------------------
+
+_shutdown = False
+
+
+def _handle_signal(signum, frame) -> None:
+    """Set _shutdown flag on SIGTERM or SIGINT. No I/O, no cleanup here."""
+    global _shutdown
+    _shutdown = True
 
 
 # ---------------------------------------------------------------------------
@@ -199,18 +212,28 @@ def main() -> None:
     if args.self_test:
         run_self_test()  # exits 0 or 1 — never returns here
 
-    while True:
-        sleep_until_next_second()
-        utc_dt = datetime.now(timezone.utc)
-        sentence = build_gprmc(utc_dt)
-        logger.debug(sentence.decode('ascii').strip())  # LOG-01: sentence at DEBUG
+    # Register handlers inside main() — not at module level (avoids firing during --self-test)
+    signal.signal(signal.SIGTERM, _handle_signal)
+    signal.signal(signal.SIGINT, _handle_signal)
 
-        if args.dry_run:
-            sys.stdout.buffer.write(sentence)  # preserves exact \r\n bytes
-            sys.stdout.buffer.flush()
-        else:
-            # Phase 5 will open serial port and write here (LOG-02 covers serial errors)
-            pass
+    port = None
+    try:
+        while not _shutdown:
+            sleep_until_next_second()
+            utc_dt = datetime.now(timezone.utc)
+            sentence = build_gprmc(utc_dt)
+            logger.debug(sentence.decode('ascii').strip())  # LOG-01: sentence at DEBUG
+
+            if args.dry_run:
+                sys.stdout.buffer.write(sentence)  # preserves exact \r\n bytes
+                sys.stdout.buffer.flush()
+            else:
+                # Phase 5 will open serial port and write here (LOG-02 covers serial errors)
+                pass
+    finally:
+        if port is not None:
+            port.close()
+            logger.info('Serial port closed.')
 
 
 if __name__ == '__main__':
