@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: CLI Shell and Logging** - Wire argparse, logging, and --dry-run so sentences can be inspected without hardware
 - [x] **Phase 3: Timing Loop** - Implement deadline-based 1 Hz loop aligned to UTC second boundary (completed 2026-04-10)
 - [x] **Phase 4: Signal Handling** - Register SIGTERM/SIGINT handler and guarantee clean port close on shutdown (completed 2026-04-10)
-- [ ] **Phase 5: Serial I/O and Reconnect** - Open serial port at 4800/8N1 and add exponential backoff reconnect
+- [x] **Phase 5: Serial I/O and Reconnect** - Open serial port at 4800/8N1 and add exponential backoff reconnect (completed 2026-04-10)
 - [ ] **Phase 6: Deployment Artifacts** - Ship requirements.txt, systemd unit template, and README with wiring diagram
 
 ## Phase Details
@@ -86,7 +86,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 05-01-PLAN.md — TDD (RED): write tests/test_serial.py with 5 failing test classes for SER-01, SER-02, SER-03, SER-04, LOG-02
-- [ ] 05-02-PLAN.md — GREEN: add open_serial() helper and replace else: pass with write-and-reconnect block in nixichron_gps.py
+- [x] 05-02-PLAN.md — GREEN: add open_serial() helper and replace else: pass with write-and-reconnect block in nixichron_gps.py
 
 ### Phase 6: Deployment Artifacts
 **Goal**: A new Linux user can clone the repo, follow the README, and have the daemon running as a systemd service feeding the NixiChron clock within 10 minutes
@@ -110,5 +110,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. CLI Shell and Logging | 0/2 | Not started | - |
 | 3. Timing Loop | 1/1 | Complete   | 2026-04-10 |
 | 4. Signal Handling | 2/2 | Complete   | 2026-04-10 |
-| 5. Serial I/O and Reconnect | 1/2 | In Progress|  |
+| 5. Serial I/O and Reconnect | 2/2 | Complete   | 2026-04-10 |
 | 6. Deployment Artifacts | 0/? | Not started | - |
