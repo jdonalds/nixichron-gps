@@ -27,10 +27,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Serial Communication
 
-- [ ] **SER-01**: Serial port opened at 4800 baud, 8N1, no flow control (xonxoff=False, rtscts=False)
-- [ ] **SER-02**: Serial port configurable via `--port` CLI arg, `GPS_PORT` env var, or default `/dev/ttyUSB0`
-- [ ] **SER-03**: Graceful handling of serial port disconnects with exponential backoff retry (1s, 2s, 4s... capped at 30s)
-- [ ] **SER-04**: Reconnect logged at WARNING level; successful reconnect logged at INFO level
+- [x] **SER-01**: Serial port opened at 4800 baud, 8N1, no flow control (xonxoff=False, rtscts=False)
+- [x] **SER-02**: Serial port configurable via `--port` CLI arg, `GPS_PORT` env var, or default `/dev/ttyUSB0`
+- [x] **SER-03**: Graceful handling of serial port disconnects with exponential backoff retry (1s, 2s, 4s... capped at 30s)
+- [x] **SER-04**: Reconnect logged at WARNING level; successful reconnect logged at INFO level
 
 ### Signal Handling
 
@@ -114,10 +114,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TIME-01 | Phase 3 | Complete |
 | TIME-02 | Phase 3 | Complete |
 | TIME-03 | Phase 3 | Complete |
-| SER-01 | Phase 5 | Pending |
-| SER-02 | Phase 5 | Pending |
-| SER-03 | Phase 5 | Pending |
-| SER-04 | Phase 5 | Pending |
+| SER-01 | Phase 5 | Complete |
+| SER-02 | Phase 5 | Complete |
+| SER-03 | Phase 5 | Complete |
+| SER-04 | Phase 5 | Complete |
 | SIG-01 | Phase 4 | Complete |
 | SIG-02 | Phase 4 | Complete |
 | CLI-01 | Phase 2 | Complete |
