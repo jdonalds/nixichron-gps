@@ -14,6 +14,7 @@ import logging
 import math
 import os
 import serial
+import serial.tools.list_ports
 import signal
 import sys
 import time
@@ -185,15 +186,60 @@ def open_serial(port: str) -> "serial.Serial":
 
 
 # ---------------------------------------------------------------------------
+# Layer 5c: Serial port autodetection
+# ---------------------------------------------------------------------------
+
+def autodetect_port() -> str:
+    """Scan for a USB-to-serial adapter and return the first match.
+
+    Prefers /dev/cu.* on macOS (tty.* blocks on DCD).
+    Falls back to /dev/ttyUSB* or /dev/ttyACM* on Linux.
+    Returns '/dev/ttyUSB0' if nothing is found (legacy default).
+    """
+    ports = serial.tools.list_ports.comports()
+    # Score each port: higher = better match for a USB-serial adapter
+    candidates = []
+    for p in ports:
+        device = p.device
+        # Skip Bluetooth and non-USB ports
+        if 'Bluetooth' in (p.description or '') or 'bluetooth' in device.lower():
+            continue
+        score = 0
+        # macOS cu.usbserial / cu.usbmodem — strongly preferred
+        if device.startswith('/dev/cu.usbserial'):
+            score = 100
+        elif device.startswith('/dev/cu.usbmodem'):
+            score = 90
+        # Linux USB-serial adapters
+        elif device.startswith('/dev/ttyUSB'):
+            score = 80
+        elif device.startswith('/dev/ttyACM'):
+            score = 70
+        # Other cu.* devices on macOS
+        elif device.startswith('/dev/cu.'):
+            score = 50
+        if score > 0:
+            candidates.append((score, device))
+    if candidates:
+        candidates.sort(reverse=True)
+        return candidates[0][1]
+    return '/dev/ttyUSB0'
+
+
+# ---------------------------------------------------------------------------
 # Layer 6: Argument parser (CLI-01, CLI-02, CLI-03, CLI-04)
 # ---------------------------------------------------------------------------
 
 def parse_args(args=None) -> argparse.Namespace:
     """Parse CLI arguments. args=None uses sys.argv; pass list for unit tests.
 
-    Port: --port > GPS_PORT env > /dev/ttyUSB0 default.
+    Port: --port > GPS_PORT env > autodetect > /dev/ttyUSB0 default.
     """
-    default_port = os.environ.get('GPS_PORT', '/dev/ttyUSB0')
+    env_port = os.environ.get('GPS_PORT')
+    if env_port:
+        default_port = env_port
+    else:
+        default_port = autodetect_port()
     parser = argparse.ArgumentParser(
         description='NixiChron GPS Emulator — feeds $GPRMC sentences to a Nixie tube clock',
     )
@@ -201,7 +247,7 @@ def parse_args(args=None) -> argparse.Namespace:
         '--port',
         default=default_port,
         metavar='DEVICE',
-        help='Serial port device (default: GPS_PORT env or /dev/ttyUSB0)',
+        help='Serial port device (default: GPS_PORT env or autodetect)',
     )
     parser.add_argument(
         '--dry-run',

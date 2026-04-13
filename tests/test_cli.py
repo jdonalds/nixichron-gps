@@ -52,11 +52,13 @@ class TestParseArgs:
         assert args.port == '/dev/bar'
 
     def test_port_default(self, monkeypatch):
-        """CLI-01: Default port is /dev/ttyUSB0 when neither --port nor GPS_PORT set."""
+        """CLI-01: Default port is autodetected when neither --port nor GPS_PORT set."""
         monkeypatch.delenv('GPS_PORT', raising=False)
         mod = _load_module()
         args = mod.parse_args([])
-        assert args.port == '/dev/ttyUSB0'
+        # Autodetect returns a real port or /dev/ttyUSB0 fallback — just verify it's a string
+        assert isinstance(args.port, str)
+        assert args.port.startswith('/dev/')
 
     def test_dry_run_flag(self):
         """CLI-02: --dry-run sets args.dry_run to True."""
