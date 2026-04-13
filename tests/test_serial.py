@@ -10,11 +10,9 @@ TestErrorLogging:     write errors logged at ERROR level (LOG-02)
 import argparse
 import importlib
 import importlib.util
-import logging
-import os
 import pathlib
 import sys
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 
 import pytest
 

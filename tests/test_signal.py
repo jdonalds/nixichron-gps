@@ -4,8 +4,6 @@ TestSignalHandling: subprocess integration tests — send SIGTERM/SIGINT, assert
 TestShutdownFlag: source inspection tests — assert structural patterns in main().
 """
 
-import inspect
-import os
 import pathlib
 import re
 import signal

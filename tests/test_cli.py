@@ -7,13 +7,11 @@ All Group A tests will FAIL (RED) until Plan 02 adds parse_args().
 All Group B tests will FAIL (RED) until Plan 02 adds main() with dispatch.
 """
 
-import os
 import sys
 import signal
 import subprocess
 import importlib
 import importlib.util
-import pytest
 
 # Project root is two levels up from tests/
 import pathlib
@@ -113,7 +111,7 @@ class TestDryRunOutput:
     def test_dry_run_output(self):
         """CLI-02: --dry-run prints at least one $GPRMC line to stdout."""
         stdout, _ = _run_dry_run()
-        lines = [l for l in stdout.split(b'\r\n') if l]
+        lines = [ln for ln in stdout.split(b'\r\n') if ln]
         assert any(line.startswith(b'$GPRMC') for line in lines), (
             f'No $GPRMC line found in stdout. Got: {stdout[:200]!r}'
         )

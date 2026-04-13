@@ -12,7 +12,6 @@ from datetime import datetime, timezone
 # Add project src to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-import pytest
 
 
 def test_verify_gprmc_checksum_is_importable():
@@ -106,7 +105,7 @@ def test_self_test_prints_exactly_5_lines():
         [sys.executable, script, '--self-test'],
         capture_output=True, text=True
     )
-    lines = [l for l in result.stdout.splitlines() if l.strip()]
+    lines = [ln for ln in result.stdout.splitlines() if ln.strip()]
     assert len(lines) == 5, f"Expected 5 lines, got {len(lines)}: {result.stdout}"
 
 
@@ -117,7 +116,7 @@ def test_self_test_all_lines_end_in_pass():
         [sys.executable, script, '--self-test'],
         capture_output=True, text=True
     )
-    lines = [l for l in result.stdout.splitlines() if l.strip()]
+    lines = [ln for ln in result.stdout.splitlines() if ln.strip()]
     for line in lines:
         assert line.endswith('PASS'), f"Line does not end in PASS: {repr(line)}"
 
@@ -139,6 +138,6 @@ def test_self_test_all_lines_start_with_gprmc():
         [sys.executable, script, '--self-test'],
         capture_output=True, text=True
     )
-    lines = [l for l in result.stdout.splitlines() if l.strip()]
+    lines = [ln for ln in result.stdout.splitlines() if ln.strip()]
     for line in lines:
         assert line.startswith('$GPRMC'), f"Line does not start with $GPRMC: {repr(line)}"

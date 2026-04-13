@@ -8,7 +8,6 @@ TestLoopOrder: 1 structural test (source inspection)
 TestTimingIntegration: 1 integration test (~12 seconds real time)
 """
 
-import os
 import sys
 import signal
 import subprocess
@@ -17,9 +16,7 @@ import importlib.util
 import pathlib
 import re
 import inspect
-import pytest
 from unittest.mock import patch
-from datetime import datetime
 
 # Project root is two levels up from tests/
 PROJECT_ROOT = pathlib.Path(__file__).parent.parent
@@ -158,7 +155,7 @@ class TestTimingIntegration:
             stdout, _ = proc.communicate()
 
         # Parse $GPRMC lines and extract hhmmss time field (field index 1)
-        lines = [l for l in stdout.split(b'\r\n') if l.startswith(b'$GPRMC')]
+        lines = [ln for ln in stdout.split(b'\r\n') if ln.startswith(b'$GPRMC')]
         assert len(lines) >= 10, (
             f'Expected >= 10 $GPRMC sentences, got {len(lines)}'
         )
