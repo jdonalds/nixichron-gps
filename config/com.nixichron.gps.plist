@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nixichron.gps</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/jdonalds/Projects/newnixie/src/nixichron_gps.py</string>
+        <string>--port</string>
+        <string>/dev/cu.usbserial-0001</string>
+    </array>
+
+    <key>UserName</key>
+    <string>jdonalds</string>
+
+    <key>GroupName</key>
+    <string>staff</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jdonalds/Projects/newnixie</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jdonalds/Library/Logs/nixichron-gps.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jdonalds/Library/Logs/nixichron-gps.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PYTHONUSERBASE</key>
+        <string>/Users/jdonalds/Library/Python/3.9</string>
+    </dict>
+</dict>
+</plist>

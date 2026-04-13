@@ -102,13 +102,13 @@ All lines should end with `PASS`. Exit code 0 on success.
 python3 src/nixichron_gps.py --port /dev/ttyUSB0
 
 # macOS
-python3 src/nixichron_gps.py --port /dev/cu.usbserial-XXXX
+python3 src/nixichron_gps.py --port /dev/cu.usbserial-0001
 ```
 
 The port can also be set via environment variable:
 
 ```bash
-GPS_PORT=/dev/cu.usbserial-XXXX python3 src/nixichron_gps.py
+GPS_PORT=/dev/cu.usbserial-0001 python3 src/nixichron_gps.py
 ```
 
 Add `--verbose` or `-v` to see each sentence logged at DEBUG level.
