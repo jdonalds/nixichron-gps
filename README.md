@@ -11,40 +11,19 @@ A Python daemon that feeds a Jeff Thomas NixiChron Nixie tube clock with accurat
 
 ## Hardware Wiring
 
-Connect the DB9 female connector on your USB adapter to the 6-pin mini-DIN GPS port on the NixiChron clock.
+This build uses a CP2102 USB-to-serial cable spliced directly to the NixiChron's original 6-pin mini-DIN cable. There is **no DB9 connector** anywhere in the signal path — the CP2102 plugs straight into the host machine's USB port, and only two wires cross to the clock (data + ground).
 
-```
-  DB9 Female (USB adapter)              6-Pin Mini-DIN (NixiChron GPS port)
-  +---------------------------+          +----------------------------------+
-  | Pin 3  TX (transmit data) |--------->| Pin 5  RX (clock receive)        |
-  | Pin 5  GND (ground)       |--------->| Pin 1  GND (ground)              |
-  |                           |          | Pin 2  DO NOT CONNECT (+5V rail) |
-  |                           |          | Pin 4  Leave floating            |
-  +---------------------------+          +----------------------------------+
-```
+- **Cable used:** [CP2102 USB RS232 to 6-pin Mini-DIN (Amazon B0FF34H9F1)](https://www.amazon.com/dp/B0FF34H9F1) — *"CP2102 USB RS232 to 6-pin Mini Din Communication Cable for LS XGB / XBM / XBC PLC, 1.8m / 5.9 ft"*
+- **Why cut the factory connector:** The cable ships with a mini-DIN plug wired for LS PLCs, whose pinout does **not** match the NixiChron. The factory mini-DIN end was removed and the CP2102's internal wires were soldered to the NixiChron's original mini-DIN 6 cable.
 
-| DB9 Pin | Signal | Mini-DIN Pin | Action              |
-|---------|--------|--------------|---------------------|
-| 3       | TX     | 5            | Connect             |
-| 5       | GND    | 1            | Connect             |
-| —       | —      | 2            | **DO NOT CONNECT**  |
-| —       | —      | 4            | Leave floating      |
+| CP2102 cable wire | NixiChron mini-DIN wire | Purpose          |
+|-------------------|-------------------------|------------------|
+| White             | Yellow                  | Data — clock RX  |
+| Black             | Brown                   | Ground           |
 
-**WARNING: Mini-DIN pin 2 carries the clock's +5V power rail. Connecting it to the DB9 adapter will damage hardware.**
+Any other conductors inside the CP2102 cable were left unconnected. If you rebuild this, verify the purpose of each conductor with a multimeter before soldering — **do not** bridge any unknown CP2102 wire to the NixiChron side, as the clock has its own +5V rail on the mini-DIN that must not be back-fed.
 
-### As-built cable (this build)
-
-This build skips the DB9 entirely and uses a CP2102 USB-to-serial cable that already terminates in a 6-pin mini-DIN plug from the factory (sold for PLC programming):
-
-- **Cable:** [CP2102 USB RS232 to 6-pin Mini-DIN (Amazon B0FF34H9F1)](https://www.amazon.com/dp/B0FF34H9F1) — *"CP2102 USB RS232 to 6-pin Mini Din Communication Cable for LS XGB / XBM / XBC PLC, 1.8m"*
-- **Modification:** The cable's factory mini-DIN connector was cut off and its wires were soldered to the NixiChron's original mini-DIN 6 cable. Only two conductors are used (data + ground); the CP2102's +5V and other lines are left unconnected.
-
-| NixiChron mini-DIN wire | CP2102 cable wire | Purpose                  |
-|-------------------------|-------------------|--------------------------|
-| Yellow                  | White             | Data — clock RX          |
-| Brown                   | Black             | Ground                   |
-
-> **Note:** Wire colors inside the Amazon cable are not guaranteed to stay consistent across batches or revisions. Continuity-test before soldering if you rebuild this.
+> **Note:** Wire colors inside the Amazon cable are not guaranteed to be consistent across batches or revisions. **Continuity-test before soldering** if you rebuild this.
 
 On macOS this cable enumerates as `/dev/cu.usbserial-0001`.
 
