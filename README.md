@@ -32,6 +32,22 @@ Connect the DB9 female connector on your USB adapter to the 6-pin mini-DIN GPS p
 
 **WARNING: Mini-DIN pin 2 carries the clock's +5V power rail. Connecting it to the DB9 adapter will damage hardware.**
 
+### As-built cable (this build)
+
+This build skips the DB9 entirely and uses a CP2102 USB-to-serial cable that already terminates in a 6-pin mini-DIN plug from the factory (sold for PLC programming):
+
+- **Cable:** [CP2102 USB RS232 to 6-pin Mini-DIN (Amazon B0FF34H9F1)](https://www.amazon.com/dp/B0FF34H9F1) — *"CP2102 USB RS232 to 6-pin Mini Din Communication Cable for LS XGB / XBM / XBC PLC, 1.8m"*
+- **Modification:** The cable's factory mini-DIN connector was cut off and its wires were soldered to the NixiChron's original mini-DIN 6 cable. Only two conductors are used (data + ground); the CP2102's +5V and other lines are left unconnected.
+
+| NixiChron mini-DIN wire | CP2102 cable wire | Purpose                  |
+|-------------------------|-------------------|--------------------------|
+| Yellow                  | White             | Data — clock RX          |
+| Brown                   | Black             | Ground                   |
+
+> **Note:** Wire colors inside the Amazon cable are not guaranteed to stay consistent across batches or revisions. Continuity-test before soldering if you rebuild this.
+
+On macOS this cable enumerates as `/dev/cu.usbserial-0001`.
+
 ## Installation
 
 ### 1. Clone the repository
